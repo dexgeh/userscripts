@@ -10,6 +10,9 @@
 // ==/UserScript==
 
 var showNsfw = false
+var additionalNsfw = [
+    // add here a string list of subreddits considered nsfw even if not tagged nsfw by reddit
+]
 
 document.body.innerHTML =
     document.getElementById('mail').outerHTML + "<br>" +
@@ -17,7 +20,7 @@ document.body.innerHTML =
     Array.prototype.slice.call(document.querySelectorAll('.subscription-box > .clear > ul > li > a'))
     .map(function(node) {
         var name = node.childNodes[0].nodeValue
-        var nsfw = node.nextSibling && node.nextSibling.title === 'over18'
+        var nsfw = (node.nextSibling && (node.nextSibling.title === 'quarantined' || node.nextSibling.title === 'NSFW')) || additionalNsfw.indexOf(name) !== -1
         return "<a href='/r/" + name + "' " + (nsfw?"class=nsfw":"") + " target=_blank>" + name +
             (nsfw?"<img src=http://www.redditstatic.com/over18_icon.png>" : "") + "</a>"
     }).join(" ") +
