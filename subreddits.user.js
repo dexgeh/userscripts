@@ -2,7 +2,9 @@
 // @name        subreddits
 // @namespace   subreddits
 // @include     http://www.reddit.com/subreddits/
-// @include     http://www.reddit.com/subreddits
+// @include     http://www.reddit.com/subreddits/
+// @include     https://www.reddit.com/subreddits/
+// @include     https://www.reddit.com/subreddits
 // @version     1
 // @grant
 // ==/UserScript==
